@@ -25,11 +25,11 @@ CENTOS_PYTHONS_TARGETS := $(sort $(dir $(wildcard centos/pythons/*/)))
 all: ubuntu centos
 
 ubuntu: $(UBUNTU_PYTHONS_TARGETS)
-	# $(eval IMAGE_27_ID := $(shell $(DOCKER_CMD) images | grep $(UBUNTU_TAG)-python | awk '/2.7/ {print $$3}' | uniq) )
-	# $(eval IMAGE_34_ID := $(shell $(DOCKER_CMD) images | grep $(UBUNTU_TAG)-python | awk '/3.4/ {print $$3}' | uniq) )
-	# $(DOCKER_CMD) tag -f $(IMAGE_27_ID) $(UBUNTU_TAG)-python:2 && \
-	# $(DOCKER_CMD) tag -f $(IMAGE_34_ID) $(UBUNTU_TAG)-python:3 && \
-	# $(DOCKER_CMD) tag -f $(IMAGE_27_ID) $(UBUNTU_TAG)-python:latest
+	$(eval IMAGE_27_ID := $(shell $(DOCKER_CMD) images | grep $(UBUNTU_TAG)-python | awk '$$2 == 2.7 {print $$3}') )
+	$(DOCKER_CMD) tag -f $(IMAGE_27_ID) $(UBUNTU_TAG)-python:2 && \
+	$(DOCKER_CMD) tag -f $(IMAGE_27_ID) $(UBUNTU_TAG)-python:latest
+	$(eval IMAGE_34_ID := $(shell $(DOCKER_CMD) images | grep $(UBUNTU_TAG)-python | awk '$$2 == 3.4 {print $$3}') )
+	$(DOCKER_CMD) tag -f $(IMAGE_34_ID) $(UBUNTU_TAG)-python:3
 
 centos: $(CENTOS_PYTHONS_TARGETS)
 	$(DOCKER_CMD) tag $(shell $(DOCKER_CMD) images | grep $(CENTOS_TAG)-python | awk '/2.7/ {print $$3}') $(CENTOS_TAG)-python:latest
