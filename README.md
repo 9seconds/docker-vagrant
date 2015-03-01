@@ -42,6 +42,8 @@ Usage is straighforward: please check `Vagrantfile` in the repository. Minimal
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
+  # Vagrant uses vagrant user by default. Docker uses root. Use root, it is
+  # a development environment anyway.
   config.ssh.username = "root"
 
   config.vm.provider "docker" do |docker|
