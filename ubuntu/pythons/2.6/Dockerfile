@@ -11,3 +11,6 @@ RUN apt-add-repository -y ppa:fkrull/deadsnakes && \
     ln -s /usr/bin/python2.6 /usr/bin/python && \
     ln -s /usr/bin/python2.6 /usr/bin/python2 && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN curl -sL https://bootstrap.pypa.io/ez_setup.py | python
+RUN curl -sL https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+RUN pip install --upgrade --no-cache-dir virtualenv
