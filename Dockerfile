@@ -33,4 +33,8 @@ RUN mkdir -p /root/.ssh && \
 # Cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Init process is entrypoint
 ENTRYPOINT ["/sbin/my_init", "--"]
+
+# Default command is bash
+CMD ["/bin/bash"]
