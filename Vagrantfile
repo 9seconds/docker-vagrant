@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "docker" do |docker|
       # The name of the image to use
-      docker.image = "nineseconds/vagrant-ubuntu"
+      docker.image = "nineseconds/docker-vagrant"
 
       # vagrant docker images have SSH so why not to use it
       docker.has_ssh = true
