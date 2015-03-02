@@ -1,4 +1,4 @@
-# docker-baseimage-vagrant
+# docker-vagrant
 
 Docker containers tuned to run by Vagrant without a big amount of buzz.
 
@@ -20,13 +20,7 @@ my Vagrant docker environments without a big pain.
 Basically you may fetch these VMs from Docker Hub:
 
 ```shell
-$ docker pull nineseconds/vagrant-ubuntu
-```
-
-or if you like to have Python
-
-```shell
-$ docker pull nineseconds/vagrant-ubuntu:2.7
+$ docker pull nineseconds/docker-vagrant
 ```
 
 Or if you want, you may build them manually with `Makefile` (just run `make`
@@ -48,7 +42,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "docker" do |docker|
       # The name of the image to use
-      docker.image = "nineseconds/vagrant-ubuntu"
+      docker.image = "nineseconds/docker-vagrant"
 
       # vagrant docker images have SSH so why not to use it
       docker.has_ssh = true
@@ -64,16 +58,17 @@ Let's check how it works...
 ```shell
 $ vagrant up
 Bringing machine 'default' up with 'docker' provider...
+==> default: Fixed port collision for 22 => 2222. Now on port 2202.
 ==> default: Creating the container...
-    default:   Name: vagrant-docker-baseimage_default_1425235452
+    default:   Name: docker-vagrant_default_1425296109
     default:  Image: nineseconds/vagrant-ubuntu
-    default: Volume: /home/nineseconds/dev/pvt/vagrant-docker-baseimage:/vagrant
-    default:   Port: 127.0.0.1:2222:22
+    default: Volume: /home/sergey/dev/pvt/docker-vagrant:/vagrant
+    default:   Port: 127.0.0.1:2202:22
     default:
-    default: Container created: 6961e1ee65ba0de4
+    default: Container created: d15b14122ebcedc8
 ==> default: Starting container...
 ==> default: Waiting for machine to boot. This may take a few minutes...
-    default: SSH address: 172.17.0.46:22
+    default: SSH address: 172.17.0.58:22
     default: SSH username: root
     default: SSH auth method: private key
     default:
@@ -85,7 +80,7 @@ Bringing machine 'default' up with 'docker' provider...
     default: Key inserted! Disconnecting and reconnecting using new SSH key...
 ==> default: Machine booted and ready!
 $ vagrant ssh
-root@6961e1ee65ba:~#
+root@d15b14122ebc:~#
 ```
 
 Works like a charm.

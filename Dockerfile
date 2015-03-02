@@ -37,6 +37,3 @@ RUN rm -rf /tmp/* /var/tmp/*
 
 # Init process is entrypoint
 ENTRYPOINT ["/sbin/my_init", "--"]
-
-# Default command is bash
-CMD ["/bin/bash"]
