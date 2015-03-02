@@ -9,7 +9,7 @@ ROOT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 DOCKER_CMD := docker
 
 NAME_TAG  := nineseconds
-IMAGE_TAG := $(NAME_TAG)/vagrant-ubuntu
+IMAGE_TAG := $(NAME_TAG)/docker-vagrant
 
 # -----------------------------------------------------------------------------
 
